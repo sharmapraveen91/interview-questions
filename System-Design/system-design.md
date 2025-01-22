@@ -211,7 +211,3 @@
   - Multi-platform support (mobile, web).
 
 ---
-
-These system design interview questions test your ability to design scalable, efficient, and reliable systems while also requiring knowledge of architectural patterns and trade-offs. When solving these problems, you’ll need to think about **scalability**, **fault tolerance**, **high availability**, **data consistency**, and **performance**.
-
-Feel free to save or share this markdown file for interview preparation or as a reference! Let me know if you need additional questions or further explanations.
