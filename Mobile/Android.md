@@ -1,4 +1,4 @@
-# Advanced Android Development Interview Questions
+# Android Development Interview Questions
 
 ## 1. **Android Internals**
 1. **What are the key differences between a `Binder` and `Messenger` for inter-process communication in Android? Can you explain their usage scenarios and limitations?**
