@@ -192,6 +192,3 @@ You can create a custom dispatcher by implementing `ExecutorCoroutineDispatcher`
 
 Leverage `CoroutineScope` tied to the lifecycle of the activity or composable. For example, in Jetpack Compose, use `LaunchedEffect` or `DisposableEffect` for automatic cancellation when the composable leaves the composition, ensuring that background tasks are cleaned up to avoid memory leaks.
 
----
-
-This markdown now contains **30 advanced, tricky, and unique interview questions** with answers, grouped by **Jetpack Compose UI**, **State Management**, and **Coroutines** topics. This should give a comprehensive guide for anyone preparing for advanced Android development interviews.

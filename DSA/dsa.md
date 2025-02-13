@@ -188,6 +188,3 @@
 5. **Find all occurrences of a substring in a string.**
    - **Explanation:** Use the Rabin-Karp algorithm or KMP algorithm to find all occurrences of a substring in a given string.
 
----
-
-This `.md` file contains a set of **advanced DSA interview questions** categorized by their respective algorithmic techniques. You can use this file for practice, preparation, or as a reference. Let me know if you'd like to add more questions or make any modifications!
