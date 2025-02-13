@@ -1,6 +1,6 @@
-# 50 Data Science Interview Questions & Answers
+# 50 Advanced Data Science Interview Questions & Answers
 
-Here is a list of 50 data science interview questions and their detailed answers.
+Here is a list of 50 advanced-level data science interview questions and their detailed answers.
 
 ---
 
@@ -429,6 +429,4 @@ The optimal number of clusters \(k\) in k-means can be chosen using methods such
 
 **Answer:**  
 A **Markov Chain** is a mathematical model that describes a sequence of events where the probability of each event depends only on the previous state. This memoryless property makes Markov Chains useful for modeling random processes such as weather patterns, stock prices, or text generation.
-
----
 
