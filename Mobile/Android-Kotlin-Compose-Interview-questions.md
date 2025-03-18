@@ -1,4 +1,4 @@
-1. Kotlin Programming & Language Features (10 Questions)
+### Kotlin Programming & Language Features (10 Questions)
 	1.	What are the practical implications of Kotlin’s visibility modifiers like internal and private in multi-module projects?
 	2.	How do safe calls (?.) and the Elvis operator (?:) help manage nullable types in Kotlin? Give real-world examples.
 	3.	Why might you choose a data object over a data class in Kotlin? Provide a scenario.
@@ -12,8 +12,8 @@
 
 ⸻
 
-2. Object-Oriented Programming & Generics (5 Questions)
-	11.	How do you achieve loose coupling in a Kotlin application, and why is it beneficial?
+### Object-Oriented Programming & Generics (5 Questions)
+    11.	How do you achieve loose coupling in a Kotlin application, and why is it beneficial?
 	12.	Compare covariance and contravariance with examples using Kotlin’s in and out keywords.
 	13.	What’s the difference between declarative and imperative programming? How does Compose use declarative patterns?
 	14.	In Kotlin, how do sealed interfaces differ from sealed classes in terms of flexibility and hierarchy?
@@ -21,7 +21,7 @@
 
 ⸻
 
-3. Jetpack Compose UI (10 Questions)
+### Jetpack Compose UI (10 Questions)
 	16.	How does recomposition work in Jetpack Compose, and what strategies can prevent unnecessary recompositions?
 	17.	Explain the difference between remember and rememberSaveable with regard to state persistence.
 	18.	How do side-effect handlers like LaunchedEffect, DisposableEffect, and SideEffect differ? Provide use cases.
@@ -35,7 +35,7 @@
 
 ⸻
 
-4. Coroutines and Flow (10 Questions)
+### Coroutines and Flow (10 Questions)
 	26.	How does Kotlin Flow differ from LiveData in terms of data stream handling and use cases?
 	27.	Compare StateFlow and SharedFlow—which one would you choose for a UI state vs an event bus?
 	28.	What is backpressure, and how does Kotlin Flow mitigate it?
@@ -49,7 +49,7 @@
 
 ⸻
 
-5. Navigation in Compose (5 Questions)
+### Navigation in Compose (5 Questions)
 	36.	How do you implement parameter passing between Composable screens using Jetpack Compose Navigation?
 	37.	Describe how to clear the navigation stack and return to a specific screen without leaving intermediate screens.
 	38.	How would you integrate deep linking into a Compose Navigation graph?
@@ -58,7 +58,7 @@
 
 ⸻
 
-6. Networking and Data Handling (5 Questions)
+### Networking and Data Handling (5 Questions)
 	41.	How can you ensure authentication tokens are automatically added to every Retrofit API call?
 	42.	Explain how you implement response caching using OkHttp’s cache policies.
 	43.	How do you switch interceptors based on build types (Debug vs Release)?
@@ -67,13 +67,13 @@
 
 ⸻
 
-7. Testing (3 Questions)
+### Testing (3 Questions)
 	46.	How do you effectively unit test suspend functions and flows in Kotlin using TestCoroutineDispatcher?
 	47.	Compare MockK and Mockito—why might one be preferred in Kotlin-based projects?
 	48.	How do you approach unit testing ViewModels in MVVM or MVI architecture?
 
 ⸻
 
-8. Accessibility & Localization (2 Questions)
+### Accessibility & Localization (2 Questions)
 	49.	What techniques ensure your Android app supports RTL languages and handles layout mirroring correctly?
 	50.	How do you ensure proper accessibility hierarchy and focus traversal in custom Compose layouts?
