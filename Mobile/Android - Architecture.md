@@ -356,5 +356,174 @@ Thus, MVI tends to scale better for larger applications due to its predictable s
 
 In general, MVI provides a more structured and centralized approach to error handling by embedding errors in the State, while MVVM delegates error handling to the ViewModel and can involve more scattered logic.
 
+### 10. How does MVI differ from MVVM and MVP in terms of architecture and state management?
+#### Answer:
+- MVI (Model-View-Intent): In MVI, the flow is strictly unidirectional. The UI (View) emits Intents (user actions), which are processed by the Model (business logic), which then produces a ViewState. This state is immutable, meaning the View only listens to state changes and renders them. MVI’s main principle is unidirectional data flow.
+
+- MVVM (Model-View-ViewModel): MVVM allows the ViewModel to hold UI state and logic. The ViewModel exposes live data (e.g., LiveData or StateFlow) that the View observes and reacts to. MVVM is bidirectional in nature, as the View can directly manipulate the ViewModel, and the ViewModel can update the View.
+
+- MVP (Model-View-Presenter): MVP has a View that delegates all logic to the Presenter. The Presenter is responsible for calling the Model and updating the View. The Presenter interacts directly with the View, unlike in MVVM, where the ViewModel doesn’t directly manipulate the View.
+
+In terms of state management:
+
+- MVI maintains immutable state, ensuring that there’s no mutability, which helps in predictable state transitions.
+MVVM and MVP focus on mutable state within the ViewModel or Presenter, respectively.
+
+### 11. Explain how to implement MVI in Jetpack Compose with real-world examples.
+#### Answer:
+Example: A simple Counter application using MVI.
+
+View: Jetpack Compose UI component
+Intent: User action (e.g., button click)
+Model: Logic to update the state
+ViewState: Represents the current UI state (e.g., count value)
+
+```kotlin
+data class CounterViewState(val count: Int)
+
+sealed class CounterIntent {
+    object Increment : CounterIntent()
+    object Decrement : CounterIntent()
+}
+
+class CounterViewModel : ViewModel() {
+    private val _state = MutableStateFlow(CounterViewState(0))
+    val state: StateFlow<CounterViewState> = _state
+
+    fun processIntent(intent: CounterIntent) {
+        when (intent) {
+            is CounterIntent.Increment -> {
+                _state.value = _state.value.copy(count = _state.value.count + 1)
+            }
+            is CounterIntent.Decrement -> {
+                _state.value = _state.value.copy(count = _state.value.count - 1)
+            }
+        }
+    }
+}
+
+@Composable
+fun CounterScreen(viewModel: CounterViewModel) {
+    val state by viewModel.state.collectAsState()
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("Count: ${state.count}")
+        Button(onClick = { viewModel.processIntent(CounterIntent.Increment) }) {
+            Text("Increment")
+        }
+        Button(onClick = { viewModel.processIntent(CounterIntent.Decrement) }) {
+            Text("Decrement")
+        }
+    }
+}
+```
+
+### 12. What are the key principles of Clean Architecture, and how does it help in modularization?
+#### Answer:
+- Separation of Concerns: Different concerns are handled by different layers (e.g., UI, business logic, data).
+- Dependency Rule: Dependencies should only point inward, from outer layers (UI, frameworks) to inner layers (business logic, domain).
+- Independence: Layers (such as UI and data) should be independent, so changes in one layer don't affect others.
+- Testability: Each layer is isolated for easy unit testing.
+
+In modularization, Clean Architecture encourages splitting your app into well-defined modules, making it easier to work on individual parts without affecting others.
+
+### 13. How does Dependency Injection improve testability and maintainability in Android?
+#### Answer:
+- Testability: Dependency Injection (DI) allows you to inject mock or fake dependencies in tests, making it easier to test components in isolation.
+- Maintainability: DI decouples the code, reducing tight dependencies between classes. If you need to change a dependency, you can do so without changing the whole codebase.
+
+### 14. Explain how Hilt works internally. How does it differ from Dagger?
+#### Answer:
+Hilt is a DI framework built on top of Dagger, which simplifies DI in Android. Hilt automates much of Dagger's boilerplate code and integrates seamlessly with Android components (like Activities, Fragments, ViewModels).
+
+#### Hilt:
+
+- Provides automatic dependency injection setup for Android components.
+- Reduces boilerplate, especially for setting up components and scopes.
+- Uses annotations like @Inject, @HiltAndroidApp, @AndroidEntryPoint.
+#### Dagger:
+
+- Requires more manual configuration of components and modules.
+- More flexible, but requires more setup for Android integrations.
+
+### 15. What are the SOLID principles, and how do they apply to Android development?
+#### Answer:
+- S: Single Responsibility Principle – Each class should have one reason to change.
+- O: Open/Closed Principle – Classes should be open for extension but closed for modification.
+- L: Liskov Substitution Principle – Subtypes should be substitutable for their base types.
+- I: Interface Segregation Principle – Clients should not be forced to depend on interfaces they do not use.
+- D: Dependency Inversion Principle – High-level modules should not depend on low-level modules. Both should depend on abstractions.
+In Android development, SOLID ensures that code is modular, reusable, and maintainable. For example, separating UI logic from business logic, using interfaces to abstract dependencies, and inverting dependencies with DI.
+
+### 16. How would you design a feature following Clean Architecture principles?
+#### Answer:
+- Domain Layer: Contains the core business logic (use cases, entities).
+- Data Layer: Contains data sources (e.g., repositories, network).
+- Presentation Layer: Contains UI-related code (ViewModels, UI logic).
+Each layer interacts with the next, adhering to the dependency rule, and the flow of data should be unidirectional.
+
+### 17. What are the best practices for managing state in MVI architecture?
+#### Answer:
+- Use immutable state: Ensure that state objects are immutable to avoid unpredictable side effects.
+- Use StateFlow or LiveData to manage state changes reactively.
+Make sure to handle side effects (e.g., navigation, showing a toast) outside the main state flow, often in effects.
+
+### 18. How do you handle shared state between multiple ViewModels in MVI?
+#### Answer:
+Shared state between multiple ViewModels can be managed using a shared repository or use case that both ViewModels interact with. The state is usually held in StateFlow or LiveData to ensure consistency across different ViewModels.
+
+### 19. Why is unidirectional data flow (UDF) critical in MVI, and how do you enforce it?
+#### Answer:
+ Unidirectional data flow ensures that the application state is predictable. In MVI:
+
+1. View sends intents (actions).
+2. Model processes intents and updates the state.
+3. View observes state and updates the UI.
+
+To enforce UDF, ensure that your state is immutable and that there are no direct feedback loops where the ViewModel or Presenter is modifying the View directly.
+
+### 20. How would you implement a caching mechanism in MVI without breaking Clean Architecture?
+#### Answer:
+In MVI, to implement caching while respecting Clean Architecture, we can introduce a Cache Layer within the Data Layer:
+
+- **Repository:** The repository checks if data is available in the cache (or local storage). If data is not found, it fetches from a remote data source (e.g., API) and stores it in the cache for future use.
+- **Use Case:** The use case can access the repository, ensuring that the ViewModel interacts with a single source of truth for data retrieval.
+- **ViewModel:** Exposes the data (either from cache or remote source) to the View.
+Example:
+```kotlin
+class UserRepository(
+    private val userCache: UserCache, 
+    private val userRemoteDataSource: UserRemoteDataSource
+) {
+    suspend fun getUserData(): User {
+        val cachedData = userCache.getUser()
+        return cachedData ?: userRemoteDataSource.fetchUser().also {
+            userCache.saveUser(it)
+        }
+    }
+}
+```
+This ensures that the cache layer is independent of the business logic and follows Clean Architecture principles.
+
+### 21. What are the downsides of MVI, and when would you not recommend it?
+#### Answer:
+- Complexity: MVI can lead to over-engineering for simple apps where a simpler approach like MVVM would suffice.
+- Boilerplate: It requires a lot of code to manage states, intents, and actions, which can feel repetitive for basic use cases.
+- Debugging: With immutable states, tracking down issues can sometimes be tricky as the state changes are handled strictly through the flow of actions and responses.
+##### When to avoid:
+- For small apps where simple architectures (like MVVM) suffice.
+- When you don’t need the unidirectional flow of data and are fine with bidirectional communication between View and ViewModel.
+
+
+### 22. How do you prevent dependency leaks in Hilt when using scoped components?
+#### Answer:
+In Hilt, scoped components (like activities, fragments, or view models) ensure that dependencies live only as long as their parent. Dependency leaks typically occur when dependencies outlive their scope, causing memory leaks.
+
+To prevent dependency leaks:
+
+- Avoid holding references to scoped objects: Ensure that no long-lived object (like a static class or singleton) holds a reference to a scoped dependency.
+- Use `@Singleton` for global dependencies: For objects that should live throughout the app's lifecycle, use singleton scope.
+- Dispose of scoped components properly: If you're using scopes like `@ActivityScoped` or `@FragmentScoped`, ensure the component is disposed of correctly.
+
 
 
