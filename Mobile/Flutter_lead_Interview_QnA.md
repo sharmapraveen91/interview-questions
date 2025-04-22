@@ -529,7 +529,7 @@ Answer:
 
 ----
 
-# Flutter Rendering & Performance 
+## Flutter Rendering & Performance 
 
 ----
 
@@ -782,7 +782,7 @@ Precautions:
 
 ----
 
-# Navigation & Routing
+## Navigation & Routing
 
 1. **What are the core differences between Navigator 1.0 and Navigator 2.0?**
 
@@ -1119,7 +1119,7 @@ Mock Navigator for unit tests with mockito or go_router test utils.
 -----
 
 
-# Architecture
+## Architecture
 
 1. **What is the layered architecture of Flutter? How does it ensure separation of concerns?**
 
@@ -1372,7 +1372,7 @@ Answer:
 
 ⸻
 
-20. How do you architect localization and accessibility in a large app?
+20. **How do you architect localization and accessibility in a large app?**
 
 Answer:
 - `intl` package for `i18n`.
@@ -1392,7 +1392,7 @@ Use custom `LocalizationDelegate` for multi-language support.
 
 ⸻
 
-# Plugin & Platform Integration
+## Plugin & Platform Integration
 
 1. **How does Flutter communicate with platform-specific code? Explain MethodChannel in depth.**
 
@@ -1668,7 +1668,7 @@ No. Hot reload only applies to Dart code. Native code changes require:
 
 ---------------------------------------------------------
 
-# Flutter + Backend Integration
+## Flutter + Backend Integration
 
 1. **How do you design a robust API service layer in Flutter with Clean Architecture?**
 
@@ -1950,7 +1950,7 @@ sealed class ApiError {
 
 -----
 
-# Theming & Accessibility
+## Theming & Accessibility
 
 
 1. **How would you architect a fully dynamic theme system (light/dark/custom colors)?**
@@ -2277,7 +2277,7 @@ MaterialApp(
 
 ----
 
-# Testing Strategy
+## Testing Strategy
 
 1. **How do you structure a scalable Flutter testing strategy in a Clean Architecture app?**
 
@@ -2375,7 +2375,7 @@ Answer:
 
 ⸻
 
-8. How do you validate accessibility (semantics) in Flutter tests?
+8. **How do you validate accessibility (semantics) in Flutter tests?**
 
 Answer:
 
@@ -2389,7 +2389,7 @@ expect(semantics, includesNodeWith(label: 'Play'));
 
 ⸻
 
-9. How would you mock platform channels or native plugins in tests?
+9. **How would you mock platform channels or native plugins in tests?**
 
 Answer:
 
@@ -2584,18 +2584,18 @@ Use this in your workflow:
 
 -----
 
-# Flutter App Lifecycle & Native Integration 
+## Flutter App Lifecycle & Native Integration 
 
 1. **Explain the Flutter app lifecycle in detail. What are its stages?**
 
 Answer:
 
 Flutter follows the Android/iOS native lifecycle, abstracted via:
-- WidgetsBindingObserver to listen for:
-    - AppLifecycleState.resumed
-    - AppLifecycleState.inactive
-    - AppLifecycleState.paused
-    - AppLifecycleState.detached
+- `WidgetsBindingObserver` to listen for:
+    - `AppLifecycleState.resumed`
+    - `AppLifecycleState.inactive`
+    - `AppLifecycleState.paused`
+    - `AppLifecycleState.detached`
 
  ```dart
  @override
@@ -2852,7 +2852,7 @@ Answer:
 -----
 
 
-# Security & Deployment
+## Security & Deployment
 
 1. **How do you secure API keys and sensitive data in Flutter?**
 
@@ -2882,7 +2882,7 @@ Protections:
 
 ⸻
 
-3. How do you secure network communication in Flutter?
+3. **How do you secure network communication in Flutter?**
 
 Answer:
 - Always use HTTPS
@@ -3015,7 +3015,7 @@ Avoid checking in keystore files to version control.
 
 ⸻
 
-11.**What is App Integrity and how do you verify it in Flutter?**
+11. **What is App Integrity and how do you verify it in Flutter?**
 
 Answer:
 
